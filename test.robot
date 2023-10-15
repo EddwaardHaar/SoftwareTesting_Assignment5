@@ -10,7 +10,7 @@ Open BlazeDemo webpage
     Open Browser    http://blazedemo.com/    ${BROWSER}
     Maximize Browser Window
     Page Should Contain    Welcome to the Simple Travel Agency!
-
+    
 Select Starting City and Destination
     
     Click Element    name:fromPort
@@ -22,7 +22,6 @@ Select Starting City and Destination
     ${destin}=    Select From List By Value    name:toPort    Cairo   
     ${destin}=    Get Selected List Value    name:toPort
     Set Suite Variable    ${destination_city}    ${destin}
-    Log To Console    Departure: ${starting_city}, Destination: ${destination_city}
 
 Check FindFlights button is selectable
     Page Should Contain Button    xpath://input[@value='Find Flights']
@@ -31,6 +30,7 @@ Check FindFlights button is selectable
 Check that the page says Flights from Boston to Cairo
     Page Should Contain   Flights from ${starting_city} to ${destination_city}:
     Page Should Contain Element    xpath://html/body/div[2]/table/tbody/tr[1]
-    Log To Console    Departure: ${starting_city}, Destination: ${destination_city}
 
-# Check that you have at least one flight choice visible
+Check that you have at least one flight choice visible
+    Page Should Contain Element    xpath:/html/body/div[2]/table/tbody/tr[5]/td[6]
+    
