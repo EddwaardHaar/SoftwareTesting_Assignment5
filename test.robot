@@ -32,14 +32,13 @@ Check that the page says Flights from Boston to Cairo
     Page Should Contain Element    xpath://html/body/div[2]/table/tbody/tr[1]
 
 Check that you have at least one flight choice visible
-    Page Should Contain Element    xpath:/html/body/div[2]/table/tbody/tr[5]/td[6]
+    Page Should Contain Element    xpath:/html/body/div[2]/table/tbody/tr[4]/td[1]
     
 Select one of the flights
-    Click Button    xpath://html/body/div[2]/table/tbody/tr[5]/td[1]/input
 
-    ${flight_price} =  Get Text  xpath://html/body/div[2]/p[3]
-    ${flight_number} =  Get Text  xpath://html/body/div[2]/p[2]
-    ${airline_name} =  Get Text  xpath://html/body/div[2]/p[1]
+    ${flight_price} =  Get Text    xpath:/html/body/div[2]/table/tbody/tr[4]/td[6]
+    ${flight_number} =  Get Text    xpath:/html/body/div[2]/table/tbody/tr[4]/td[2]
+    ${airline_name} =  Get Text    xpath:/html/body/div[2]/table/tbody/tr[4]/td[3]
 
     
 
@@ -47,8 +46,16 @@ Select one of the flights
     Set Suite Variable  ${selected_flight_number}  ${flight_number}
     Set Suite Variable  ${selected_airline_name}  ${airline_name}
 
-    
+    Log To Console    Company: ${selected_airline_name}
 
-# Check Stored Flight Information on the Page
-#     ${expected_info} =  Catenate  SEPARATOR=  Flights from ${starting_city} to ${destination_city}: Price: ${selected_flight_price}, Airline: ${selected_airline_name}, Flight Number: ${selected_flight_number}
-#     Page Should Contain  ${expected_info}
+    Click Button    xpath://html/body/div[2]/table/tbody/tr[4]/td[1]/input
+
+Check Stored Flight Information on the Page
+    ${flight_price} =  Get Text    xpath://html/body/div[2]/p[3]
+    ${flight_number} =  Get Text    xpath://html/body/div[2]/p[2]
+    ${airline_name} =  Get Text    xpath://html/body/div[2]/p[1]
+
+    Log To Console    Price: ${flight_price}, Flight no: ${flight_number}, Company: ${airline_name}
+
+    ${price}=    Get Text    xpath://html/body/div[2]/p[5]/em
+    Set Suite Variable    ${total_price}    ${price}
