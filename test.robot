@@ -14,13 +14,23 @@ Open BlazeDemo webpage
 Select Starting City and Destination
     
     Click Element    name:fromPort
-    ${startin_city}=    Select From List By Value    name:fromPort    Boston
-    ${startin_city}=    Get Selected List Value    name:fromPort
+    ${startin}=    Select From List By Value    name:fromPort    Boston
+    ${startin}=    Get Selected List Value    name:fromPort
+    Set Suite Variable    ${starting_city}    ${startin}
     
     Click Element    name:toPort
-    ${destination}=    Select From List By Value    name:toPort    Cairo   
-    ${destination}=    Get Selected List Value    name:toPort
+    ${destin}=    Select From List By Value    name:toPort    Cairo   
+    ${destin}=    Get Selected List Value    name:toPort
+    Set Suite Variable    ${destination_city}    ${destin}
+    Log To Console    Departure: ${starting_city}, Destination: ${destination_city}
 
 Check FindFlights button is selectable
     Page Should Contain Button    xpath://input[@value='Find Flights']
     Click Button    xpath://input[@value='Find Flights']
+
+Check that the page says Flights from Boston to Cairo
+    Page Should Contain   Flights from ${starting_city} to ${destination_city}:
+    Page Should Contain Element    xpath://html/body/div[2]/table/tbody/tr[1]
+    Log To Console    Departure: ${starting_city}, Destination: ${destination_city}
+
+# Check that you have at least one flight choice visible
