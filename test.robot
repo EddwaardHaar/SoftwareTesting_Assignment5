@@ -34,3 +34,9 @@ Check that the page says Flights from Boston to Cairo
 Check that you have at least one flight choice visible
     Page Should Contain Element    xpath:/html/body/div[2]/table/tbody/tr[5]/td[6]
     
+Select one of the flights
+    ${flight_price} =  Get Text  xpath://table[@class='table']/tbody/tr[1]/td[6]
+    ${flight_number} =  Get Text  xpath://table[@class='table']/tbody/tr[1]/td[2]
+    ${airline_name} =  Get Text  xpath://table[@class='table']/tbody/tr[1]/td[3]
+
+    Click Button    xpath://html/body/div[2]/table/tbody/tr[5]/td[1]/input
