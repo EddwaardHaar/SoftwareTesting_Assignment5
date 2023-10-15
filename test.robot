@@ -59,3 +59,31 @@ Check Stored Flight Information on the Page
 
     ${price}=    Get Text    xpath://html/body/div[2]/p[5]/em
     Set Suite Variable    ${total_price}    ${price}
+
+# Fill in the passenger information on the form
+Set Card Expiry Month and Year
+    Set Suite Variable  ${creditCardNumber}  666666666666
+    Set Suite Variable  ${creditCardMonth}  2025  
+    Set Suite Variable  ${creditCardYear}  2025  
+    Set Suite Variable  ${nameOnCard}  2025  
+
+Fill Passenger Information
+    Click Element    id:inputName
+    Input Text    id:inputName    John Wick
+    Click Element    id:address
+    Input Text    id:address   Street address 123
+    Click Element    id:city
+    Input Text    id:city    Hameenlinna
+    Click Element    id:state
+    Input Text    id:state    Finland
+    Click Element    id:zipCode
+    Input Text    id:zipCode    13100
+
+    Select From List By Value    id:cardType    visa
+
+    Input Text    id:creditCardNumber    ${creditCardNumber}
+    Input Text    id:creditCardMonth    ${creditCardMonth}
+    Input Text    id:creditCardYear    ${creditCardYear}
+    Input Text    id:nameOnCard    ${nameOnCard}
+    Select Checkbox    id:rememberMe
+    Click Button    xpath:/html/body/div[2]/form/div[11]/div/input
