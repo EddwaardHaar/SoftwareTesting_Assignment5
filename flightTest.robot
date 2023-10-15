@@ -1,4 +1,7 @@
+# Created by Peter Harcar
+
 *** Settings ***
+
 Library    SeleniumLibrary
 
 *** Variables ***
