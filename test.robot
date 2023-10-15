@@ -87,3 +87,19 @@ Fill Passenger Information
     Input Text    id:nameOnCard    ${nameOnCard}
     Select Checkbox    id:rememberMe
     Click Button    xpath:/html/body/div[2]/form/div[11]/div/input
+
+Check that the page that opens says "Thank you for your purchase today!"
+    Wait Until Page Contains    Thank you for your purchase today!
+
+Check that the expiration time is correct
+    ${expiration_time}=    Get Text    xpath:/html/body/div[2]/div[1]/table/tbody/tr[5]/td[2]
+
+Check that the total price is correct
+    ${current_total_price} =  Get Text  xpath:/html/body/div[2]/div[1]/table/tbody/tr[3]/td[2]
+    
+    Should Be Equal As Strings  ${current_total_price}  ${total_price}
+
+    Run Keyword And Continue On Failure    Should Be Equal    ${current_total_price}    ${total_price}
+
+Close the browser
+    Close Browser
