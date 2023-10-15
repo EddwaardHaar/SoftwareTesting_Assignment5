@@ -20,3 +20,7 @@ Select Starting City and Destination
     Click Element    name:toPort
     ${destination}=    Select From List By Value    name:toPort    Cairo   
     ${destination}=    Get Selected List Value    name:toPort
+
+Check FindFlights button is selectable
+    Page Should Contain Button    xpath://input[@value='Find Flights']
+    Click Button    xpath://input[@value='Find Flights']
