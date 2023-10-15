@@ -35,8 +35,20 @@ Check that you have at least one flight choice visible
     Page Should Contain Element    xpath:/html/body/div[2]/table/tbody/tr[5]/td[6]
     
 Select one of the flights
-    ${flight_price} =  Get Text  xpath://table[@class='table']/tbody/tr[1]/td[6]
-    ${flight_number} =  Get Text  xpath://table[@class='table']/tbody/tr[1]/td[2]
-    ${airline_name} =  Get Text  xpath://table[@class='table']/tbody/tr[1]/td[3]
-
     Click Button    xpath://html/body/div[2]/table/tbody/tr[5]/td[1]/input
+
+    ${flight_price} =  Get Text  xpath://html/body/div[2]/p[3]
+    ${flight_number} =  Get Text  xpath://html/body/div[2]/p[2]
+    ${airline_name} =  Get Text  xpath://html/body/div[2]/p[1]
+
+    
+
+    Set Suite Variable  ${selected_flight_price}  ${flight_price}
+    Set Suite Variable  ${selected_flight_number}  ${flight_number}
+    Set Suite Variable  ${selected_airline_name}  ${airline_name}
+
+    
+
+# Check Stored Flight Information on the Page
+#     ${expected_info} =  Catenate  SEPARATOR=  Flights from ${starting_city} to ${destination_city}: Price: ${selected_flight_price}, Airline: ${selected_airline_name}, Flight Number: ${selected_flight_number}
+#     Page Should Contain  ${expected_info}
